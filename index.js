@@ -30,7 +30,7 @@ http.createServer(function (req, res) {
                         console.error('Error executing shell script: ' + error);
                         utils.response(res, 500, error);
                     }
-                    utils.response(res, 200, "Great job!!!")
+                    utils.response(res, 200, 'Great job!!!')
                 });
             }
 
