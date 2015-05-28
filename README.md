@@ -1,7 +1,9 @@
 # matti
 Simple TTS server.
 
-Usage: Send POST request that goes something like this
+Usage: run MATTI_ADDRESS=localhost MATTI_PORT=6666 sudo nodejs index.js
+
+Send POST request that goes something like this
 
 ```json
 {
@@ -9,3 +11,5 @@ Usage: Send POST request that goes something like this
     "language" : "en"
 }
 ```
+
+Needs mplayer installed for text-to-speech to work.
