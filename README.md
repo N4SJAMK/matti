@@ -5,7 +5,7 @@ Simple TTS server.
 
 Run
 
-```sh
+```shell
 MATTI_ADDRESS=localhost MATTI_PORT=6666 sudo nodejs index.js
 ```
 
