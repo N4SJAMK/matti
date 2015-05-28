@@ -48,4 +48,4 @@ http.createServer(function (req, res) {
         utils.response(res, 400, 'Matti only accepts POST method!');
     }
 }).listen(1234, '0.0.0.0');
-console.log('Matti server running!!!\n');
+console.log('Matti server running!!!');
