@@ -5,9 +5,11 @@ var exec = require('child_process').exec;
 
 var utils = require('./utils');
 
-http.createServer(function (req, res) {
-    req.setTimeout(10000);
+var address = process.env.MATTI_ADDRESS || '0.0.0.0';
+var port    = process.env.MATTI_PORT    || 1234;
 
+
+http.createServer(function (req, res) {
     if(req.method == 'POST') {
         var body = '';
 
@@ -47,5 +49,5 @@ http.createServer(function (req, res) {
     else {
         utils.response(res, 400, 'Matti only accepts POST method!');
     }
-}).listen(1234, '0.0.0.0');
-console.log('Matti server running!!!');
+}).listen(port, address);
+console.log('Matti server running at: ' + address + ':' + port);
