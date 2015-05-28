@@ -1,7 +1,7 @@
 'use strict';
 
-var http  = require('http');
-var exec  = require('child_process').exec;
+var http = require('http');
+var exec = require('child_process').exec;
 
 var utils = require('./utils');
 
@@ -25,10 +25,14 @@ http.createServer(function (req, res) {
             }
 
             if (content.message) {
-                exec('sudo sh ./speech.sh "' + utils.parse(content.message) + '"', function (error, stdout, stderr) {
+                var language = 'fi';
+                if (content.language) language = utils.parse(content.language);
+
+                exec('sudo sh ./speech.sh "' + utils.parse(content.message) + '" "' + language + '"', function (error, stdout, stderr) {
                     if (error !== null) {
                         console.error('Error executing shell script: ' + error);
                         utils.response(res, 500, error);
+                        return;
                     }
                     utils.response(res, 200, 'Great job!!!')
                 });
@@ -36,7 +40,7 @@ http.createServer(function (req, res) {
 
             else {
                 res.writeHead(res, 400, {'Content-Type': 'text/plain'});
-                res.end('message not found u retard');
+                res.end('message not found u silly billy');
             }
         });
     }
@@ -44,4 +48,4 @@ http.createServer(function (req, res) {
         utils.response(res, 400, 'Matti only accepts POST method!');
     }
 }).listen(1234, '0.0.0.0');
-console.log('Matti server running!!!');
+console.log('Matti server running!!!\n');
