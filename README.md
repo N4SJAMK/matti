@@ -1,9 +1,13 @@
 # matti
 Simple TTS server.
 
-Usage: run MATTI_ADDRESS=localhost MATTI_PORT=6666 sudo nodejs index.js
+Usage: run
 
-Send POST request that goes something like this
+```bash
+MATTI_ADDRESS=localhost MATTI_PORT=6666 sudo nodejs index.js
+```
+
+Then send POST request that goes something like this...
 
 ```json
 {
