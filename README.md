@@ -1,7 +1,7 @@
 # matti
 Simple TTS server.
 
-Usage:
+Usage: Send POST request that goes something like this
 
 ```json
 {
