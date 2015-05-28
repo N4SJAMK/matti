@@ -20,7 +20,7 @@ http.createServer(function (req, res) {
             try {
                 var content = JSON.parse(body);
             } catch(e) {
-                utils.response(res, 500, "Error parsing json from response!");
+                utils.response(res, 500, 'Error parsing json from response!');
                 return;
             }
 
@@ -36,12 +36,12 @@ http.createServer(function (req, res) {
 
             else {
                 res.writeHead(res, 400, {'Content-Type': 'text/plain'});
-                res.end("message not found u retard");
+                res.end('message not found u retard');
             }
         });
     }
     else {
-        utils.response(res, 400, "Matti only accepts POST method!");
+        utils.response(res, 400, 'Matti only accepts POST method!');
     }
 }).listen(1234, '0.0.0.0');
 console.log('Matti server running!!!');
