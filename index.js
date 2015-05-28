@@ -21,7 +21,7 @@ http.createServer(function (req, res) {
             }
 
             if (content.message) {
-                exec('sudo sh /home/cf2015/scp/speech.sh "' + shittyParsing(content.message) + '"', function (error, stdout, stderr) {
+                exec('sudo sh ./speech.sh "' + shittyParsing(content.message) + '"', function (error, stdout, stderr) {
                     if (error !== null) {
                         console.log('exec error: ' + error);
                         res.writeHead(500, {'Content-Type': 'text/plain'});
