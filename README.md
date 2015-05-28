@@ -3,7 +3,7 @@ Simple TTS server.
 
 Usage: run
 
-```bash
+```sh
 MATTI_ADDRESS=localhost MATTI_PORT=6666 sudo nodejs index.js
 ```
 
