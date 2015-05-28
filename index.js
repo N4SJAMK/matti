@@ -1,48 +1,51 @@
+'use strict';
+
 var http = require('http');
 var exec = require('child_process').exec;
 
-http.createServer(function (req, res) {
+var utils = require('./utils');
 
+http.createServer(function (req, res) {
     req.setTimeout(10000);
+
     if(req.method == 'POST') {
         var body = '';
 
         req.on('data', function (data) {
-            body += data
+            body += data;
+            if (body.length > 9001) req.connection.destroy();
         });
 
         req.on('end', function() {
             try {
-                content = JSON.parse(body);
+                var content = JSON.parse(body);
             } catch(e) {
-                res.writeHead(500, {'Content-Type': 'text/plain'});
-                res.end("Error parsing json from response!");
+                utils.response(res, 500, 'Error parsing json from response!');
                 return;
             }
 
             if (content.message) {
-                exec('sudo sh ./speech.sh "' + shittyParsing(content.message) + '"', function (error, stdout, stderr) {
+                var language = 'fi';
+                if (content.language) language = utils.parse(content.language);
+
+                exec('sudo sh ./speech.sh "' + utils.parse(content.message) + '" "' + language + '"', function (error, stdout, stderr) {
                     if (error !== null) {
-                        console.log('exec error: ' + error);
-                        res.writeHead(500, {'Content-Type': 'text/plain'});
-                        res.end(error);
+                        console.error('Error executing shell script: ' + error);
+                        utils.response(res, 500, error);
+                        return;
                     }
-                    res.writeHead(200, {'Content-Type': 'text/plain'});
-                    res.end("Great job!!!");
+                    utils.response(res, 200, 'Great job!!!')
                 });
             }
 
             else {
-                res.writeHead(400, {'Content-Type': 'text/plain'});
-                res.end("message not found u retard");
+                res.writeHead(res, 400, {'Content-Type': 'text/plain'});
+                res.end('message not found u silly billy');
             }
         });
     }
+    else {
+        utils.response(res, 400, 'Matti only accepts POST method!');
+    }
 }).listen(1234, '0.0.0.0');
-
-function shittyParsing(string)
-{
-    return string.replace(/&/g, "").replace(/|/g, "").replace(/$/g, "").replace(/"/g, "").replace(/'/g, "")
-}
-
 console.log('Matti server running!!!');
