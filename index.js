@@ -5,7 +5,7 @@ var exec = require('child_process').exec;
 
 var utils = require('./utils');
 
-var address = process.env.MATTI_ADDRESS || '0.0.0.0';
+var address = process.env.MATTI_ADDR    || '0.0.0.0';
 var port    = process.env.MATTI_PORT    || 1234;
 
 
@@ -19,6 +19,7 @@ http.createServer(function (req, res) {
         });
 
         req.on('end', function() {
+            console.log(body);
             try {
                 var content = JSON.parse(body);
             } catch(e) {
@@ -30,7 +31,7 @@ http.createServer(function (req, res) {
                 var language = 'fi';
                 if (content.language) language = utils.parse(content.language);
 
-                exec('sudo sh ./speech.sh "' + utils.parse(content.message) + '" "' + language + '"', function (error, stdout, stderr) {
+                exec('sh ./speech.sh "' + utils.parse(content.message) + '" "' + language + '"', function (error, stdout, stderr) {
                     if (error !== null) {
                         console.error('Error executing shell script: ' + error);
                         utils.response(res, 500, error);
