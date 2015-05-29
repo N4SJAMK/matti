@@ -1,0 +1,12 @@
+{
+  "name": "matti",
+  "version": "0.0.1",
+  "description": "Simple TTS server.",
+  "scripts": {
+    "test": "echo 'Nice try bro'",
+    "start": "node index.js"
+  },
+  "author": "Matti Jokitulppo melonmanchan@gmail.com",
+  "license": "MIT",
+  "repository": "N4SJAMK/matti"
+}
