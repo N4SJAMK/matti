@@ -1,0 +1,18 @@
+{
+  "name": "matti",
+  "version": "0.1.0",
+  "description": "Simple TTS server.",
+  "scripts": {
+    "test": "echo 'Nice try bro'",
+    "start": "node index.js"
+  },
+  "author": "Matti Jokitulppo melonmanchan@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/N4SJAMK/matti"
+  },
+  "bugs": {
+    "url": "https://github.com/N4SJAMK/matti/issues"
+  }
+}

@@ -6,7 +6,7 @@ Simple TTS server.
 Run
 
 ```shell
-MATTI_ADDRESS=localhost MATTI_PORT=6666 sudo nodejs index.js
+MATTI_ADDRESS=localhost MATTI_PORT=6666 npm start
 ```
 
 Then send POST request that goes something like this...
