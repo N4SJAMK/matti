@@ -19,7 +19,6 @@ http.createServer(function (req, res) {
         });
 
         req.on('end', function() {
-            console.log(body);
             try {
                 var content = JSON.parse(body);
             } catch(e) {
